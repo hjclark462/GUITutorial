@@ -30,10 +30,26 @@ public class ActionUI : MonoBehaviour
             icon.color = action.color;
         }
     }
+
     private void Start()
     {
-        if (action != null)        
-        SetAction(action);
+        if (action != null)
+        {
+            SetAction(action);
+        }
+    }
+
+    public Player player;
+
+    public void Init(Player p)
+    {
+        player = p;
+        
+        Button button = GetComponentInChildren<Button>();
+        if (button)
+        {
+            button.onClick.AddListener(() => { player.DoAction(action); });
+        }
     }
 }
 
